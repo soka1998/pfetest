@@ -25,8 +25,8 @@ exports.create = (req, res) => {
         username: req.body.username,
         password: hash,
         fullName: req.body.fullname,
-        role: "ROLE_EMPLOYEE",
-        active: false
+        role: "ROLE_ADMIN",
+        active: true
     };
 
     // Save User in the database

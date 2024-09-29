@@ -144,7 +144,7 @@ const EmployeeContainer = () => (
       <Switch>
         <Route exact path="/" component={withAuth(DashboardEmployee)} />
         <Route exact path="/employee-view" component={withAuth(EmployeeViewEmployee)} />
-        <Route exact path="/application-list" component={withAuth(ApplicationListEmployee)} />
+        <Route exact path="/application-list" component={(ApplicationListEmployee)} />
         <Route exact path="/application" component={withAuth(Application)} />
         <Route exact path="/salary-view" component={withAuth(SalaryViewEmployee)} />
         <Route exact path="/announcement" component={withAuth(AnnouncementEmployee)} />

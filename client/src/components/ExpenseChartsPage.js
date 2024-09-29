@@ -8,7 +8,7 @@ export default class ExpenseChartsPage extends React.Component {
 
     this.state = {
       chartData: [],
-      expenseYear: 2021,
+      expenseYear: 2024,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -66,7 +66,7 @@ export default class ExpenseChartsPage extends React.Component {
         <div className="mt-1" style={{ textAlign: "center" }}>
           <span className="ml-4">Select Year: </span>
           <select onChange={this.onChange} value={this.state.expenseYear}>
-            <option value="2021">2021</option>
+            <option value="2024">2024</option>
             <option value="2020">2020</option>
             <option value="2019">2019</option>
             <option value="2018">2018</option>

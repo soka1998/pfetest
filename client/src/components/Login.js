@@ -44,6 +44,7 @@ export default class Login extends Component {
       password: this.state.password,
     };
 
+    console.log(user);
     axios({
       method: "post",
       url: "/login",
@@ -51,6 +52,7 @@ export default class Login extends Component {
     })
       .then((res) => {
         localStorage.setItem('token', res.data.token)
+        console.log(res)
         this.setState({done: true})
       })
       .catch((err) => {

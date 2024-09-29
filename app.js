@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+const cors = require('cors');
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -7,12 +8,22 @@ var withAuth = require("./withAuth");
 
 const db = require("./models");
 require("dotenv").config();
+console.log('User:', process.env.DATABASE_USER);
+console.log('Password:', process.env.DATABASE_PASSWORD);
+console.log('Database:', process.env.DATABASE_NAME); 
+console.log('port :', process.env.DATABASE_PORT); 
+
+
+
+
 
 var api = require("./routes/api");
 var login = require("./routes/login/login.routes");
 var register = require("./routes/register/register.routes");
+const { PORT } = require("./config/db.config");
 
 var app = express();
+app.use(cors());
 
 // global.__basedir = __dirname;
 
@@ -24,14 +35,16 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // var corsOptions = {
 //   origin: 'http://localhost:3000',
 //   optionsSuccessStatus: 200
 // }
 
-db.sequelize.sync({ alter: true });
+db.sequelize.sync({ alter: true }).then(()=>{
+  console.log("Database is synced");
+}).catch(err => ("databse failed sync",err));
 
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
@@ -67,6 +80,11 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
+});
+// Start the server and log the port
+const port = process.env.PORT|| 3006;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 module.exports = app;

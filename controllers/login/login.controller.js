@@ -3,6 +3,7 @@ const User = db.user;
 const Department = db.department
 const Op = db.Sequelize.Op;
 const bcrypt = require('bcrypt')
+require('dotenv').config();
 
 const jwt = require('jsonwebtoken')
 
@@ -42,7 +43,8 @@ exports.authenticate = (req, res) => {
                     jwt.sign({user: userData}, process.env.SECRET_KEY, { expiresIn: '30m' }, (err, token) => {
                         res.cookie('token', token)
                         res.status(200).send({
-                            token: token
+                            token: token,
+
                         });
                     })
                 } else {

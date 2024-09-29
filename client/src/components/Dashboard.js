@@ -36,7 +36,7 @@ export default class Dashboard extends Component {
     //Fetch Expenses Total
     axios({
       method: "get",
-      url: "/api/expenses/year/2021",
+      url: "/api/expenses/year/2024",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => {
       let array = res.data;
@@ -52,7 +52,7 @@ export default class Dashboard extends Component {
     //Fetch Payments Total
     axios({
       method: "get",
-      url: "api/payments/year/2021",
+      url: "api/payments/year/2024",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => {
       let array = res.data;
